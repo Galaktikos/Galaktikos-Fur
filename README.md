@@ -1,6 +1,6 @@
 # Galaktikos Fur
 A Unity shader for high quality fur for the built-in render pipeline.
-<br>
+<br><br>
 ![preview](.assets/preview.jpg?raw=true)
 <br><br>
 ### Notice
