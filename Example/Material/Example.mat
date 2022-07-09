@@ -2,15 +2,23 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Example 1
+  m_Name: Example
   m_Shader: {fileID: 4800000, guid: e463fecf9bdde1a44ad4e2439e47ced0, type: 3}
-  m_ShaderKeywords: _FURLAYERFADE_ON _FURLIGHTINGAMBIENT_ON _FURLIGHTINGDIRECTIONAL_ON
-    _FURLIGHTINGLIGHTMAP_ON _FURLIGHTING_ON _FURLIGHTMAP_ON _FURUVBRUSH_ON
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _FURLAYERFADE_ON
+  - _FURLIGHTINGAMBIENT_ON
+  - _FURLIGHTINGDIRECTIONAL_ON
+  - _FURLIGHTING_ON
+  - _FURLIGHTMAP_ON
+  - _FURTEXTUREOFFSET_ON
+  - _FURUVBRUSH_ON
+  - _FURWIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +28,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _FurAlphaTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _FurEmmissionTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -30,6 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FurHeightTexture:
         m_Texture: {fileID: 2800000, guid: 6637e3d20ee0fd244a96d5543c348eb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurLengthTexture:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FurTex:
@@ -52,11 +68,13 @@ Material:
         m_Texture: {fileID: 2800000, guid: c40f343d86c4899428c8cdedba64c92d, type: 3}
         m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _ColorWriteMask: 15
-    - _Cull: 2
+    - _Cull: 0
     - _DstBlend: 10
     - _Fancy: 0
+    - _FurAlphaCutoff: 0
     - _FurBrush: 0
     - _FurBrushX: 0
     - _FurBrushY: 0
@@ -66,6 +84,8 @@ Material:
     - _FurEmmission: 0
     - _FurEmmissionTextureOffset: 0
     - _FurHeightCutoff: 0.45
+    - _FurHeightCutoffEnd: 0.85
+    - _FurHeightCutoffStart: 0
     - _FurLayerFade: 1
     - _FurLayers: 1
     - _FurLength: 0.4
@@ -76,15 +96,15 @@ Material:
     - _FurLightingDirectionalShininess: 5
     - _FurLightingDirectionalSpecular: 0
     - _FurLightingDirectionalStrength: 1
-    - _FurLightingLightmap: 1
+    - _FurLightingLightmap: 0
     - _FurLightingLightmapStrength: 1
-    - _FurLightingStrength: 1
+    - _FurLightingStrength: 0.5
     - _FurLightmap: 1
     - _FurLightmapStrength: 1
     - _FurShininess: 5
     - _FurSpawn: 1
     - _FurSpecular: 0
-    - _FurTextureOffset: 0
+    - _FurTextureOffset: 1
     - _FurUVBrush: 1
     - _FurUVBrushX: 0
     - _FurUVBrushY: 0.05
@@ -93,7 +113,7 @@ Material:
     - _FurUVWindSpeedY: 0
     - _FurUVWindStrengthX: 0
     - _FurUVWindStrengthY: 0
-    - _FurWind: 0
+    - _FurWind: 1
     - _FurWindSpeedX: 0.5
     - _FurWindSpeedY: 0.75
     - _FurWindSpeedZ: 1
@@ -119,7 +139,7 @@ Material:
     - _FurColor: {r: 1, g: 1, b: 1, a: 1}
     - _FurEmmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FurLayerFadeEnd: {r: 1, g: 1, b: 1, a: 1}
-    - _FurLayerFadeStart: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _FurLayerFadeStart: {r: 0, g: 0, b: 0, a: 1}
     - _FurLightingDirectionalSpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _FurSpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

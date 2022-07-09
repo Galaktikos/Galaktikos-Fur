@@ -18,15 +18,17 @@ struct v2f
 	float2 uvLightmap : TEXCOORD3;
 	float2 uvFur : TEXCOORD4;
 	float2 uvFurHeight : TEXCOORD5;
-	float2 uvFurEmmission : TEXCOORD6;
-	float2 uvFurUVBrushMask : TEXCOORD7;
-	float2 uvFurUVWindMask : TEXCOORD8;
+	float2 uvFurLength : TEXCOORD6;
+	float2 uvFurAlpha : TEXCOORD7;
+	float2 uvFurEmmission : TEXCOORD8;
+	float2 uvFurUVBrushMask : TEXCOORD9;
+	float2 uvFurUVWindMask : TEXCOORD10;
 };
 
 sampler _CameraDepthTexture;
-sampler2D _FurTexture, _FurHeightTexture, _FurUVBrushMaskTexture, _FurUVWindMaskTexture, _FurEmmissionTexture;
-float4 _FurTexture_ST, _FurHeightTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST, _FurEmmissionTexture_ST, _FurColor, _FurLayerFadeStart, _FurLayerFadeEnd, _FurLightingDirectionalSpecularColor, _FurEmmissionColor;
-float _FurTextureOffset, _FurHeightCutoff, _FurLength, _FurLayerFade, _FurLayers,
+sampler2D _FurTexture, _FurHeightTexture, _FurLengthTexture, _FurAlphaTexture, _FurUVBrushMaskTexture, _FurUVWindMaskTexture, _FurEmmissionTexture;
+float4 _FurTexture_ST, _FurHeightTexture_ST, _FurLengthTexture_ST, _FurAlphaTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST, _FurEmmissionTexture_ST, _FurColor, _FurLayerFadeStart, _FurLayerFadeEnd, _FurLightingDirectionalSpecularColor, _FurEmmissionColor;
+float _FurTextureOffset, _FurHeightCutoff, _FurHeightCutoffChangeBase, _FurHeightCutoffStart, _FurHeightCutoffEnd, _FurLength, _FurLayerFade, _FurLayerFadeChangeBase, _FurLayers,
 _FurLighting, _FurLightingStrength,
 _FurLightingAmbient, _FurLightingAmbientStrength,
 _FurLightingDirectional, _FurLightingDirectionalStrength, _FurLightingDirectionalSpecular, _FurLightingDirectionalShininess,
@@ -58,6 +60,8 @@ v2f vert(appdata v)
 	o.uvLightmap = v.uvLightmap.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 	o.uvFur = TRANSFORM_TEX(v.uv, _FurTexture);
 	o.uvFurHeight = TRANSFORM_TEX(v.uv, _FurHeightTexture);
+	o.uvFurLength = TRANSFORM_TEX(v.uv, _FurLengthTexture);
+	o.uvFurAlpha = TRANSFORM_TEX(v.uv, _FurAlphaTexture);
 	o.uvFurEmmission = TRANSFORM_TEX(v.uv, _FurEmmissionTexture);
 	o.uvFurUVBrushMask = TRANSFORM_TEX(v.uv, _FurUVBrushMaskTexture);
 	o.uvFurUVWindMask = TRANSFORM_TEX(v.uv, _FurUVWindMaskTexture);
@@ -69,7 +73,7 @@ v2f vert(appdata v)
 
 float ColorValue(float4 color)
 {
-	return (color.r * 0.3 + color.g * 0.59 + color.b * 0.11) * color.a;
+	return (color.r + color.g + color.b) / 3 * color.a;
 }
 
 float4 frag(v2f i) : SV_Target
@@ -93,12 +97,31 @@ float4 frag(v2f i) : SV_Target
 	offset *= pow(_FURLAYER, 2);
 
 	fixed4 col = fixed4(1, 1, 1, 1);
-	col.a -= _FurHeightCutoff * 2 - ColorValue(tex2D(_FurHeightTexture, i.uvFurHeight + offset)) + _FURLAYER;
 	col *= tex2D(_FurTexture, i.uvFur + (_FurTextureOffset ? offset : 0)) * _FurColor;
+	
+	// Length
+	float length = ColorValue(tex2D(_FurLengthTexture, i.uvFurLength + offset));
+
+	if (_FURLAYER > length)
+		discard;
+
+	float layer = _FURLAYER;
+	if (length > 0)
+		layer /= length;
+
+	// Alpha
+	col.a *= ColorValue(tex2D(_FurAlphaTexture, i.uvFurAlpha + offset));
+
+	// Height Cutoff
+	if (_FurHeightCutoff && (_FurHeightCutoffChangeBase || layer > 0))
+	{
+		float cutoff = lerp(_FurHeightCutoffStart, _FurHeightCutoffEnd, layer);
+		col.a -= (1 - ColorValue(tex2D(_FurHeightTexture, i.uvFurHeight + offset))) * cutoff + cutoff;
+	}
 
 	// Layer Fade
-	if (_FurLayerFade)
-		col *= lerp(_FurLayerFadeStart, _FurLayerFadeEnd, _FURLAYER);
+	if (_FurLayerFade && (_FurLayerFadeChangeBase || layer > 0))
+		col *= lerp(_FurLayerFadeStart, _FurLayerFadeEnd, layer);
 	
 	if (col.a <= 0)
 		discard;

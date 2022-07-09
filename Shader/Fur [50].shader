@@ -13,12 +13,20 @@
 		[Toggle] _FurTextureOffset("Use Offsets", Float) = 0
 		_FurTexture("Texture", 2D) = "white" {}
 		_FurHeightTexture("Height", 2D) = "white" {}
-		_FurHeightCutoff("Height Cutoff", Range(0, 1)) = 0
+		_FurLengthTexture("Length", 2D) = "white" {}
+		_FurAlphaTexture("Alpha", 2D) = "white" {}
 		_FurLength("Length", Float) = .2
 		_FurLayers("Layers", Range(0, 1)) = 1
+		
+		[Header(Height Cutoff)]
+		[Toggle] _FurHeightCutoff("Enabled", Float) = 1
+		[Toggle] _FurHeightCutoffChangeBase("Change Base", Float) = 0
+		_FurHeightCutoffStart("Height Cutoff Start", Range(0, 1)) = 0
+		_FurHeightCutoffEnd("Height Cutoff End", Range(0, 1)) = 1
 
 		[Header(Layer Fade)]
 		[Toggle] _FurLayerFade("Enabled", Float) = 1
+		[Toggle] _FurLayerFadeChangeBase("Change Base", Float) = 0
 		[HDR] _FurLayerFadeStart("Start", Color) = (0, 0, 0, 1)
 		[HDR] _FurLayerFadeEnd("End", Color) = (1, 1, 1, 1)
 
