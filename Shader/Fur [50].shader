@@ -13,11 +13,13 @@
 		[Toggle] _FurTextureOffset("Use Offsets", Float) = 0
 		_FurTexture("Texture", 2D) = "white" {}
 		_FurHeightTexture("Height", 2D) = "white" {}
+		[Toggle] _FurLengthTextureOffset("Use Offsets", Float) = 0
 		_FurLengthTexture("Length", 2D) = "white" {}
+		[Toggle] _FurAlphaTextureOffset("Use Offsets", Float) = 0
 		_FurAlphaTexture("Alpha", 2D) = "white" {}
 		_FurLength("Length", Float) = .2
 		_FurLayers("Layers", Range(0, 1)) = 1
-		
+
 		[Header(Height Cutoff)]
 		[Toggle] _FurHeightCutoff("Enabled", Float) = 1
 		[Toggle] _FurHeightCutoffChangeBase("Change Base", Float) = 0
@@ -92,7 +94,7 @@
 		[Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend("SrcBlend", Float) = 5
 		[Enum(UnityEngine.Rendering.BlendMode)] _DstBlend("DestBlend", Float) = 10
 	}
-	Category
+		Category
 		{
 			Tags{"RenderType" = "Transparent" "IgnoreProjector" = "True" "Queue" = "Transparent"}
 			Blend[_SrcBlend][_DstBlend]

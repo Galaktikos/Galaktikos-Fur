@@ -28,7 +28,8 @@ struct v2f
 sampler _CameraDepthTexture;
 sampler2D _FurTexture, _FurHeightTexture, _FurLengthTexture, _FurAlphaTexture, _FurUVBrushMaskTexture, _FurUVWindMaskTexture, _FurEmmissionTexture;
 float4 _FurTexture_ST, _FurHeightTexture_ST, _FurLengthTexture_ST, _FurAlphaTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST, _FurEmmissionTexture_ST, _FurColor, _FurLayerFadeStart, _FurLayerFadeEnd, _FurLightingDirectionalSpecularColor, _FurEmmissionColor;
-float _FurTextureOffset, _FurHeightCutoff, _FurHeightCutoffChangeBase, _FurHeightCutoffStart, _FurHeightCutoffEnd, _FurLength, _FurLayerFade, _FurLayerFadeChangeBase, _FurLayers,
+float _FurTextureOffset, _FurLengthTextureOffset, _FurAlphaTextureOffset, _FurLength, _FurLayerFade, _FurLayerFadeChangeBase, _FurLayers,
+_FurHeightCutoff, _FurHeightCutoffChangeBase, _FurHeightCutoffStart, _FurHeightCutoffEnd,
 _FurLighting, _FurLightingStrength,
 _FurLightingAmbient, _FurLightingAmbientStrength,
 _FurLightingDirectional, _FurLightingDirectionalStrength, _FurLightingDirectionalSpecular, _FurLightingDirectionalShininess,
@@ -100,7 +101,7 @@ float4 frag(v2f i) : SV_Target
 	col *= tex2D(_FurTexture, i.uvFur + (_FurTextureOffset ? offset : 0)) * _FurColor;
 	
 	// Length
-	float length = ColorValue(tex2D(_FurLengthTexture, i.uvFurLength + offset));
+	float length = ColorValue(tex2D(_FurLengthTexture, i.uvFurLength + (_FurLengthTextureOffset ? offset : 0)));
 
 	if (_FURLAYER > length)
 		discard;
@@ -110,7 +111,7 @@ float4 frag(v2f i) : SV_Target
 		layer /= length;
 
 	// Alpha
-	col.a *= ColorValue(tex2D(_FurAlphaTexture, i.uvFurAlpha + offset));
+	col.a *= ColorValue(tex2D(_FurAlphaTexture, i.uvFurAlpha + (_FurAlphaTextureOffset ? offset : 0)));
 
 	// Height Cutoff
 	if (_FurHeightCutoff && (_FurHeightCutoffChangeBase || layer > 0))
