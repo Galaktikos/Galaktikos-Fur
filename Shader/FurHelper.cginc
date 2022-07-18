@@ -1,6 +1,88 @@
 ﻿#include "UnityCG.cginc"
 #include "Lighting.cginc"
 
+// Fur
+half4 _FurColor;
+float _FurTextureOffset;
+sampler2D _FurTexture; float4 _FurTexture_ST;
+sampler2D _FurHeightTexture; float4 _FurHeightTexture_ST;
+float _FurLengthTextureOffset;
+sampler2D _FurLengthTexture; float4 _FurLengthTexture_ST;
+float _FurAlphaTextureOffset;
+sampler2D _FurAlphaTexture; float4 _FurAlphaTexture_ST;
+float _FurLength;
+float _FurLayers;
+
+// Height Cutoff
+float _FurHeightCutoff;
+float _FurHeightCutoffChangeBase;
+float _FurHeightCutoffStart;
+float _FurHeightCutoffEnd;
+
+// Layer Fade
+float _FurLayerFade;
+float _FurLayerFadeChangeBase;
+half4 _FurLayerFadeStart;
+half4 _FurLayerFadeEnd;
+
+// Lighting
+float _FurLighting;
+float _FurLightingStrength;
+
+	// Ambient
+	float _FurLightingAmbient;
+	float _FurLightingAmbientStrength;
+
+	// Directional
+	float _FurLightingDirectional;
+	float _FurLightingDirectionalStrength;
+	float _FurLightingDirectionalSpecular;
+	half _FurLightingDirectionalSpecularColor;
+	float _FurLightingDirectionalShininess;
+
+	// Lightmap
+	float _FurLightingLightmap;
+	float _FurLightingLightmapStrength;
+
+// Emmission
+float _FurEmmission;
+half _FurEmmissionColor;
+float _FurEmmissionTextureOffset;
+sampler2D _FurEmmissionTexture; float4 _FurEmmissionTexture_ST;
+
+// Brush
+float _FurBrush;
+float _FurBrushX;
+float _FurBrushY;
+float _FurBrushZ;
+
+// UV Brush
+float _FurUVBrush;
+sampler2D _FurUVBrushMaskTexture; float4 _FurUVBrushMaskTexture_ST;
+float _FurUVBrushX;
+float _FurUVBrushY;
+
+// Wind
+float _FurWind;
+float _FurWindStrengthX;
+float _FurWindStrengthY;
+float _FurWindStrengthZ;
+float _FurWindSpeedX;
+float _FurWindSpeedY;
+float _FurWindSpeedZ;
+
+// UV Wind
+float _FurUVWind;
+sampler2D _FurUVWindMaskTexture; float4 _FurUVWindMaskTexture_ST;
+float _FurUVWindStrengthX;
+float _FurUVWindStrengthY;
+float _FurUVWindSpeedX;
+float _FurUVWindSpeedY;
+
+// Other
+sampler _CameraDepthTexture;
+
+
 struct appdata
 {
 	float4 vertex : POSITION;
@@ -25,31 +107,6 @@ struct v2f
 	float2 uvFurUVWindMask : TEXCOORD10;
 };
 
-sampler _CameraDepthTexture;
-
-sampler2D _FurTexture, _FurHeightTexture, _FurLengthTexture, _FurAlphaTexture, _FurUVBrushMaskTexture, _FurUVWindMaskTexture, _FurEmmissionTexture;
-
-float4 _FurTexture_ST, _FurHeightTexture_ST, _FurLengthTexture_ST, _FurAlphaTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST,
-_FurEmmissionTexture_ST,
-_FurColor,
-_FurLayerFadeStart, _FurLayerFadeEnd,
-_FurLightingDirectionalSpecularColor,
-_FurEmmissionColor;
-
-float _FurTextureOffset, _FurLengthTextureOffset, _FurAlphaTextureOffset, _FurLength, _FurLayers,
-_FurHeightCutoff, _FurHeightCutoffChangeBase, _FurHeightCutoffStart, _FurHeightCutoffEnd,
-_FurLayerFade, _FurLayerFadeChangeBase,
-_FurLighting, _FurLightingStrength,
-_FurLightingAmbient, _FurLightingAmbientStrength,
-_FurLightingDirectional, _FurLightingDirectionalStrength, _FurLightingDirectionalSpecular, _FurLightingDirectionalShininess,
-_FurLightingLightmap, _FurLightingLightmapStrength,
-_FurEmmission, _FurEmmissionTextureOffset,
-_FurBrush, _FurBrushX, _FurBrushY, _FurBrushZ,
-_FurUVBrush, _FurUVBrushX, _FurUVBrushY,
-_FurWind, _FurWindStrengthX, _FurWindStrengthY, _FurWindStrengthZ, _FurWindSpeedX, _FurWindSpeedY, _FurWindSpeedZ,
-_FurUVWind, _FurUVWindStrengthX, _FurUVWindStrengthY, _FurUVWindSpeedX, _FurUVWindSpeedY;
-
-
 v2f vert(appdata v)
 {
 	float offset = _FURLAYER * _FurLength;
@@ -64,9 +121,11 @@ v2f vert(appdata v)
 		positionOffset += float3(_FurWindStrengthX * sin(_Time.y * _FurWindSpeedX), _FurWindStrengthY * sin(_Time.y * _FurWindSpeedY), _FurWindStrengthZ * sin(_Time.y * _FurWindSpeedZ));
 
 	v2f o;
+
 	o.vertex = UnityObjectToClipPos(v.vertex + normalize(v.normal) * offset + positionOffset * pow(offset, 2));
 	o.worldPosition = mul(unity_ObjectToWorld, v.vertex);
 	o.worldNormal = UnityObjectToWorldNormal(v.normal);
+
 	o.uvLightmap = v.uvLightmap.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 	o.uvFur = TRANSFORM_TEX(v.uv, _FurTexture);
 	o.uvFurHeight = TRANSFORM_TEX(v.uv, _FurHeightTexture);
