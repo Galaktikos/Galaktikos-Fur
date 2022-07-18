@@ -221,7 +221,7 @@ float4 frag(v2f i) : SV_Target
 
 		// Lightmap
 		if (_FurLightingLightmap)
-			lighting.rgb += DecodeLightmap(UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uvLightmap)) * col.rgb * _FurLightingLightmapStrength;
+			lighting += DecodeLightmap(UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uvLightmap)) * col.rgb * _FurLightingLightmapStrength;
 		
 		col.rgb = lerp(col.rgb, lighting, _FurLightingStrength);
 	}
