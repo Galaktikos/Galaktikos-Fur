@@ -11,6 +11,9 @@ Material:
   m_Shader: {fileID: 4800000, guid: e463fecf9bdde1a44ad4e2439e47ced0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - HEIGHT_CUTOFF
+  - LAYER_FADE
+  - _FURHEIGHTCUTOFF_ON
   - _FURLAYERFADE_ON
   - _FURLIGHTINGAMBIENT_ON
   - _FURLIGHTINGDIRECTIONAL_ON
@@ -22,7 +25,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 3001
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -75,6 +78,7 @@ Material:
     - _DstBlend: 10
     - _Fancy: 0
     - _FurAlphaCutoff: 0
+    - _FurAlphaTextureOffset: 0
     - _FurBrush: 0
     - _FurBrushX: 0
     - _FurBrushY: 0
@@ -83,12 +87,15 @@ Material:
     - _FurDirectionalLightingStrength: 1
     - _FurEmmission: 0
     - _FurEmmissionTextureOffset: 0
-    - _FurHeightCutoff: 0.45
+    - _FurHeightCutoff: 1
+    - _FurHeightCutoffChangeBase: 0
     - _FurHeightCutoffEnd: 0.85
     - _FurHeightCutoffStart: 0
     - _FurLayerFade: 1
+    - _FurLayerFadeChangeBase: 0
     - _FurLayers: 1
     - _FurLength: 0.4
+    - _FurLengthTextureOffset: 0
     - _FurLighting: 1
     - _FurLightingAmbient: 1
     - _FurLightingAmbientStrength: 1
