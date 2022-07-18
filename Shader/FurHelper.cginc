@@ -26,10 +26,19 @@ struct v2f
 };
 
 sampler _CameraDepthTexture;
+
 sampler2D _FurTexture, _FurHeightTexture, _FurLengthTexture, _FurAlphaTexture, _FurUVBrushMaskTexture, _FurUVWindMaskTexture, _FurEmmissionTexture;
-float4 _FurTexture_ST, _FurHeightTexture_ST, _FurLengthTexture_ST, _FurAlphaTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST, _FurEmmissionTexture_ST, _FurColor, _FurLayerFadeStart, _FurLayerFadeEnd, _FurLightingDirectionalSpecularColor, _FurEmmissionColor;
-float _FurTextureOffset, _FurLengthTextureOffset, _FurAlphaTextureOffset, _FurLength, _FurLayerFade, _FurLayerFadeChangeBase, _FurLayers,
+
+float4 _FurTexture_ST, _FurHeightTexture_ST, _FurLengthTexture_ST, _FurAlphaTexture_ST, _FurUVBrushMaskTexture_ST, _FurUVWindMaskTexture_ST,
+_FurEmmissionTexture_ST,
+_FurColor,
+_FurLayerFadeStart, _FurLayerFadeEnd,
+_FurLightingDirectionalSpecularColor,
+_FurEmmissionColor;
+
+float _FurTextureOffset, _FurLengthTextureOffset, _FurAlphaTextureOffset, _FurLength, _FurLayers,
 _FurHeightCutoff, _FurHeightCutoffChangeBase, _FurHeightCutoffStart, _FurHeightCutoffEnd,
+_FurLayerFade, _FurLayerFadeChangeBase,
 _FurLighting, _FurLightingStrength,
 _FurLightingAmbient, _FurLightingAmbientStrength,
 _FurLightingDirectional, _FurLightingDirectionalStrength, _FurLightingDirectionalSpecular, _FurLightingDirectionalShininess,
