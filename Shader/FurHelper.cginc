@@ -37,7 +37,7 @@ float _FurLightingStrength;
 	float _FurLightingDirectional;
 	float _FurLightingDirectionalStrength;
 	float _FurLightingDirectionalSpecular;
-	half _FurLightingDirectionalSpecularColor;
+	half4 _FurLightingDirectionalSpecularColor;
 	float _FurLightingDirectionalShininess;
 
 	// Lightmap
@@ -46,7 +46,7 @@ float _FurLightingStrength;
 
 // Emmission
 float _FurEmmission;
-half _FurEmmissionColor;
+half4 _FurEmmissionColor;
 float _FurEmmissionTextureOffset;
 sampler2D _FurEmmissionTexture; float4 _FurEmmissionTexture_ST;
 
