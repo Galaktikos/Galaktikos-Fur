@@ -1,7 +1,7 @@
 ﻿#include "UnityCG.cginc"
 #include "Lighting.cginc"
 
-// Fur
+// General
 half4 _FurColor;
 float _FurTextureOffset;
 sampler2D _FurTexture; float4 _FurTexture_ST;

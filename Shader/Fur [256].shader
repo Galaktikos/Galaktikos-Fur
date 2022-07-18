@@ -8,7 +8,7 @@
 		_Glossiness("Smoothness", Range(0, 1)) = .5
 		_Metallic("Metallic", Range(0, 1)) = 0
 
-		[Header(Fur)]
+		[Header(General)]
 		[HDR] _FurColor("Color", Color) = (1, 1, 1, 1)
 		[Toggle] _FurTextureOffset("Use Offsets", Float) = 0
 		_FurTexture("Texture", 2D) = "white" {}
