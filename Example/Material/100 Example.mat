@@ -7,27 +7,24 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 256 Example
-  m_Shader: {fileID: 4800000, guid: e463fecf9bdde1a44ad4e2439e47ced0, type: 3}
+  m_Name: 100 Example
+  m_Shader: {fileID: 4800000, guid: e8a3359025e03bc4fabd2b341478741d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - HEIGHT_CUTOFF
-  - LAYER_FADE
   - _FURHEIGHTCUTOFF_ON
   - _FURLAYERFADE_ON
   - _FURLIGHTINGAMBIENT_ON
   - _FURLIGHTINGDIRECTIONAL_ON
   - _FURLIGHTING_ON
-  - _FURLIGHTMAP_ON
   - _FURTEXTUREOFFSET_ON
   - _FURUVBRUSH_ON
   - _FURWIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -147,7 +144,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _FurColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FurColor: {r: 1.0717734, g: 1.0717734, b: 1.0717734, a: 1}
     - _FurEmmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FurLayerFadeEnd: {r: 1, g: 1, b: 1, a: 1}
     - _FurLayerFadeStart: {r: 0, g: 0, b: 0, a: 1}
