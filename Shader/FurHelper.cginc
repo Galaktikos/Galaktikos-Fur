@@ -11,6 +11,7 @@ sampler2D _FurLengthTexture; float4 _FurLengthTexture_ST;
 float _FurAlphaTextureOffset;
 sampler2D _FurAlphaTexture; float4 _FurAlphaTexture_ST;
 float _FurLength;
+float _FurInset;
 float _FurLayers;
 
 // Height Cutoff
@@ -109,7 +110,7 @@ struct v2f
 
 v2f vert(appdata v)
 {
-	float offset = _FURLAYER * _FurLength;
+    float offset = (_FURLAYER - _FurInset) * _FurLength;
 	float3 positionOffset = float3(0, 0, 0);
 	
 	// Brush
