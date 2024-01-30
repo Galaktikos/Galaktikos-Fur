@@ -30,20 +30,20 @@ half4 _FurLayerFadeEnd;
 float _FurLighting;
 float _FurLightingStrength;
 
-	// Ambient
-	float _FurLightingAmbient;
-	float _FurLightingAmbientStrength;
+// Ambient
+float _FurLightingAmbient;
+float _FurLightingAmbientStrength;
 
-	// Directional
-	float _FurLightingDirectional;
-	float _FurLightingDirectionalStrength;
-	float _FurLightingDirectionalSpecular;
-	half4 _FurLightingDirectionalSpecularColor;
-	float _FurLightingDirectionalShininess;
+// Directional
+float _FurLightingDirectional;
+float _FurLightingDirectionalStrength;
+float _FurLightingDirectionalSpecular;
+half4 _FurLightingDirectionalSpecularColor;
+float _FurLightingDirectionalShininess;
 
-	// Lightmap
-	float _FurLightingLightmap;
-	float _FurLightingLightmapStrength;
+// Lightmap
+float _FurLightingLightmap;
+float _FurLightingLightmapStrength;
 
 // Emmission
 float _FurEmmission;
