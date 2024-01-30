@@ -18,6 +18,7 @@
 		[Toggle] _FurAlphaTextureOffset("Use Offsets", Float) = 0
 		_FurAlphaTexture("Alpha", 2D) = "white" {}
 		_FurLength("Length", Float) = .2
+		_FurInset("Inset", Range(0, 1)) = 0
 		_FurLayers("Layers", Range(0, 1)) = 1
 
 		[Header(Height Cutoff)]
@@ -94,93 +95,197 @@
 		[Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend("SrcBlend", Float) = 5
 		[Enum(UnityEngine.Rendering.BlendMode)] _DstBlend("DestBlend", Float) = 10
 	}
-		Category
-		{
-			Tags{"RenderType"="Transparent" "IgnoreProjector"="True" "Queue"="Transparent"}
-			Blend[_SrcBlend][_DstBlend]
-			ZTest[_ZTest]
-			ZWrite[_ZWrite]
-			Cull[_Cull]
-			ColorMask[_ColorWriteMask]
 
-SubShader{Pass{CGPROGRAM#define _FURLAYER.0
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.05
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.1
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.15
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.2
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.25
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.3
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.35
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.4
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.45
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.5
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.55
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.6
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.65
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.7
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.75
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.8
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.85
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.9
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}Pass{CGPROGRAM#define _FURLAYER.95
-#pragma vertex vert
-#pragma fragment frag
-#pragma multi_compile_fog
-#include"FurHelper.cginc"ENDCG}}}}
+	Category
+	{
+		Tags{"RenderType"="Transparent" "IgnoreProjector"="True" "Queue"="Transparent"}
+		Blend[_SrcBlend][_DstBlend]
+		ZTest[_ZTest]
+		ZWrite[_ZWrite]
+		Cull[_Cull]
+		ColorMask[_ColorWriteMask]
+
+		SubShader {
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.05263157894736842
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.10526315789473684
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.15789473684210525
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.21052631578947367
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.2631578947368421
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.3157894736842105
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.3684210526315789
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.42105263157894735
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.47368421052631576
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.5263157894736842
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.5789473684210527
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.631578947368421
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.6842105263157894
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.7368421052631579
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.7894736842105263
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.8421052631578947
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.894736842105263
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 0.9473684210526315
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+			Pass {
+				CGPROGRAM
+				#define _FURLAYER 1
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "FurHelper.cginc"
+				ENDCG
+			}
+		}
+	}
+}

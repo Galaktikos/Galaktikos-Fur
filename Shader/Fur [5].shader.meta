@@ -2,7 +2,15 @@ fileFormatVersion: 2
 guid: b5f6eded93cb9e24eb43789fb87562a6
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _FurTexture: {instanceID: 0}
+  - _FurHeightTexture: {instanceID: 0}
+  - _FurLengthTexture: {instanceID: 0}
+  - _FurAlphaTexture: {instanceID: 0}
+  - _FurEmmissionTexture: {instanceID: 0}
+  - _FurUVBrushMaskTexture: {instanceID: 0}
+  - _FurUVWindMaskTexture: {instanceID: 0}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 
